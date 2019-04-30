@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ru.smartops",
+      "nativeLanguage": "ru"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "monolith",
+    "baseName": "blacklisthotel",
+    "packageName": "ru.smartops",
+    "packageFolder": "ru/smartops",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OTk2Y2IwOTQ1NmY0YmMxODk2NjExOTcxYzI0MDQ1MGE2N2YzODFkODAxNWJhNmIxMWI2Zjc4NDc3ZWFjNWRhYmFmNTA4ZjU0ZjM5NDU5MTM1YmM4MzkzOGI2MzA3MDY4NWMxZWY5NmM2Y2M5ZGY1MzYxMzljMDU0NmFiNTZjZmU=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "ru",
+    "languages": [
+      "ru"
+    ]
+  }
+}

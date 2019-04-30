@@ -1,0 +1,28 @@
+{
+    "blacklisthotelApp": {
+        "incident": {
+            "home": {
+                "title": "Incidents",
+                "createLabel": "Создать новый Incident",
+                "createOrEditLabel": "Создать или отредактировать Incident"
+            },
+            "created": "Новый Incident создан с идентификатором {{ param }}",
+            "updated": "Incident обновлен с идентификатором {{ param }}",
+            "deleted": "Incident удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Incident {{ id }}?"
+            },
+            "detail": {
+                "title": "Incident"
+            },
+            "type": "Type",
+            "date": "Date",
+            "place": "Place",
+            "hotel": "Hotel",
+            "personNameHash": "Person Name Hash",
+            "personDocumentHash": "Person Document Hash",
+            "phoneNumberHash": "Phone Number Hash",
+            "description": "Description"
+        }
+    }
+}
