@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "IncidentType",
+            "fieldValues": "THEFT,PETTY_TEFT,NOISE,ALCOHOL,ATTACK,PROPERTY,DAMAGE,DEBOUCH"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "place",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hotel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "personNameHash",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "personDocumentHash",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumberHash",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190425125932",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "incident",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

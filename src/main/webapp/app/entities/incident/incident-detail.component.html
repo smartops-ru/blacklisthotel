@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="incident">
+            <h2><span jhiTranslate="blacklisthotelApp.incident.detail.title">Incident</span> {{incident.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="blacklisthotelApp.incident.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'blacklisthotelApp.IncidentType.' + incident.type}}">{{incident.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.date">Date</span></dt>
+                <dd>
+                    <span>{{incident.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.place">Place</span></dt>
+                <dd>
+                    <span>{{incident.place}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.hotel">Hotel</span></dt>
+                <dd>
+                    <span>{{incident.hotel}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.personNameHash">Person Name Hash</span></dt>
+                <dd>
+                    <span>{{incident.personNameHash}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.personDocumentHash">Person Document Hash</span></dt>
+                <dd>
+                    <span>{{incident.personDocumentHash}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.phoneNumberHash">Phone Number Hash</span></dt>
+                <dd>
+                    <span>{{incident.phoneNumberHash}}</span>
+                </dd>
+                <dt><span jhiTranslate="blacklisthotelApp.incident.description">Description</span></dt>
+                <dd>
+                    <span>{{incident.description}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/incident', incident.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

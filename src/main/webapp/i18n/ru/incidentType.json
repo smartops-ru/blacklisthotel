@@ -1,0 +1,15 @@
+{
+    "blacklisthotelApp": {
+        "IncidentType": {
+            "null": "",
+            "THEFT": "THEFT",
+            "PETTY_TEFT": "PETTY_TEFT",
+            "NOISE": "NOISE",
+            "ALCOHOL": "ALCOHOL",
+            "ATTACK": "ATTACK",
+            "PROPERTY": "PROPERTY",
+            "DAMAGE": "DAMAGE",
+            "DEBOUCH": "DEBOUCH"
+        }
+    }
+}
