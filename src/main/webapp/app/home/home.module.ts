@@ -5,8 +5,8 @@ import { BlacklisthotelSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
 
 @NgModule({
-    imports: [BlacklisthotelSharedModule, RouterModule.forChild([HOME_ROUTE])],
-    declarations: [HomeComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [BlacklisthotelSharedModule, RouterModule.forChild([HOME_ROUTE])],
+  declarations: [HomeComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BlacklisthotelHomeModule {}

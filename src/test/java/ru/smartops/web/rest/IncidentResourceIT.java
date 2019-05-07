@@ -1,7 +1,6 @@
 package ru.smartops.web.rest;
 
 import ru.smartops.BlacklisthotelApp;
-
 import ru.smartops.domain.Incident;
 import ru.smartops.repository.IncidentRepository;
 import ru.smartops.service.IncidentService;
@@ -9,16 +8,14 @@ import ru.smartops.web.rest.errors.ExceptionTranslator;
 import ru.smartops.service.dto.IncidentCriteria;
 import ru.smartops.service.IncidentQueryService;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +26,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-
 import static ru.smartops.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -38,13 +34,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import ru.smartops.domain.enumeration.IncidentType;
 /**
- * Test class for the IncidentResource REST controller.
- *
- * @see IncidentResource
+ * Integration tests for the {@Link IncidentResource} REST controller.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = BlacklisthotelApp.class)
-public class IncidentResourceIntTest {
+public class IncidentResourceIT {
 
     private static final IncidentType DEFAULT_TYPE = IncidentType.THEFT;
     private static final IncidentType UPDATED_TYPE = IncidentType.PETTY_TEFT;
@@ -98,7 +91,7 @@ public class IncidentResourceIntTest {
 
     private Incident incident;
 
-    @Before
+    @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         final IncidentResource incidentResource = new IncidentResource(incidentService, incidentQueryService);
@@ -129,7 +122,7 @@ public class IncidentResourceIntTest {
         return incident;
     }
 
-    @Before
+    @BeforeEach
     public void initTest() {
         incident = createEntity(em);
     }
@@ -177,6 +170,7 @@ public class IncidentResourceIntTest {
         List<Incident> incidentList = incidentRepository.findAll();
         assertThat(incidentList).hasSize(databaseSizeBeforeCreate);
     }
+
 
     @Test
     @Transactional
@@ -559,7 +553,7 @@ public class IncidentResourceIntTest {
         defaultIncidentShouldNotBeFound("description.specified=false");
     }
     /**
-     * Executes the search, and checks that the default entity is returned
+     * Executes the search, and checks that the default entity is returned.
      */
     private void defaultIncidentShouldBeFound(String filter) throws Exception {
         restIncidentMockMvc.perform(get("/api/incidents?sort=id,desc&" + filter))
@@ -583,7 +577,7 @@ public class IncidentResourceIntTest {
     }
 
     /**
-     * Executes the search, and checks that the default entity is not returned
+     * Executes the search, and checks that the default entity is not returned.
      */
     private void defaultIncidentShouldNotBeFound(String filter) throws Exception {
         restIncidentMockMvc.perform(get("/api/incidents?sort=id,desc&" + filter))
@@ -678,7 +672,7 @@ public class IncidentResourceIntTest {
         // Delete the incident
         restIncidentMockMvc.perform(delete("/api/incidents/{id}", incident.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
+            .andExpect(status().isNoContent());
 
         // Validate the database is empty
         List<Incident> incidentList = incidentRepository.findAll();

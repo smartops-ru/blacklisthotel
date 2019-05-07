@@ -21,7 +21,7 @@ import ru.smartops.domain.enumeration.IncidentType;
 public class Incident implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -171,19 +171,15 @@ public class Incident implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Incident)) {
             return false;
         }
-        Incident incident = (Incident) o;
-        if (incident.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), incident.getId());
+        return id != null && id.equals(((Incident) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

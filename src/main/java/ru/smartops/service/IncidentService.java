@@ -8,23 +8,23 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 /**
- * Service Interface for managing Incident.
+ * Service Interface for managing {@link Incident}.
  */
 public interface IncidentService {
 
     /**
      * Save a incident.
      *
-     * @param incident the entity to save
-     * @return the persisted entity
+     * @param incident the entity to save.
+     * @return the persisted entity.
      */
     Incident save(Incident incident);
 
     /**
      * Get all the incidents.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<Incident> findAll(Pageable pageable);
 
@@ -32,15 +32,15 @@ public interface IncidentService {
     /**
      * Get the "id" incident.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     Optional<Incident> findOne(Long id);
 
     /**
      * Delete the "id" incident.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 }

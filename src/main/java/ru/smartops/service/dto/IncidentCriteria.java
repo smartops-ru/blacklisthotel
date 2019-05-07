@@ -2,6 +2,7 @@ package ru.smartops.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import io.github.jhipster.service.Criteria;
 import ru.smartops.domain.enumeration.IncidentType;
 import io.github.jhipster.service.filter.BooleanFilter;
 import io.github.jhipster.service.filter.DoubleFilter;
@@ -13,18 +14,32 @@ import io.github.jhipster.service.filter.StringFilter;
 import io.github.jhipster.service.filter.LocalDateFilter;
 
 /**
- * Criteria class for the Incident entity. This class is used in IncidentResource to
- * receive all the possible filtering options from the Http GET request parameters.
- * For example the following could be a valid requests:
- * <code> /incidents?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * Criteria class for the {@link ru.smartops.domain.Incident} entity. This class is used
+ * in {@link ru.smartops.web.rest.IncidentResource} to receive all the possible filtering options from
+ * the Http GET request parameters.
+ * For example the following could be a valid request:
+ * {@code /incidents?id.greaterThan=5&attr1.contains=something&attr2.specified=false}
  * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
  * fix type specific filters.
  */
-public class IncidentCriteria implements Serializable {
+public class IncidentCriteria implements Serializable, Criteria {
     /**
      * Class for filtering IncidentType
      */
     public static class IncidentTypeFilter extends Filter<IncidentType> {
+
+        public IncidentTypeFilter() {
+        }
+
+        public IncidentTypeFilter(IncidentTypeFilter filter) {
+            super(filter);
+        }
+
+        @Override
+        public IncidentTypeFilter copy() {
+            return new IncidentTypeFilter(this);
+        }
+
     }
 
     private static final long serialVersionUID = 1L;
@@ -46,6 +61,26 @@ public class IncidentCriteria implements Serializable {
     private StringFilter phoneNumberHash;
 
     private StringFilter description;
+
+    public IncidentCriteria(){
+    }
+
+    public IncidentCriteria(IncidentCriteria other){
+        this.id = other.id == null ? null : other.id.copy();
+        this.type = other.type == null ? null : other.type.copy();
+        this.date = other.date == null ? null : other.date.copy();
+        this.place = other.place == null ? null : other.place.copy();
+        this.hotel = other.hotel == null ? null : other.hotel.copy();
+        this.personNameHash = other.personNameHash == null ? null : other.personNameHash.copy();
+        this.personDocumentHash = other.personDocumentHash == null ? null : other.personDocumentHash.copy();
+        this.phoneNumberHash = other.phoneNumberHash == null ? null : other.phoneNumberHash.copy();
+        this.description = other.description == null ? null : other.description.copy();
+    }
+
+    @Override
+    public IncidentCriteria copy() {
+        return new IncidentCriteria(this);
+    }
 
     public LongFilter getId() {
         return id;

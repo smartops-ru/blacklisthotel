@@ -1,17 +1,17 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-incident-heading" jhiTranslate="blacklisthotelApp.incident.home.createOrEditLabel">Create or edit a Incident</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!incident.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="incident.id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.type" for="field_type">Type</label>
-                    <select class="form-control" name="type" [(ngModel)]="incident.type" id="field_type" >
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
                         <option value="THEFT">{{'blacklisthotelApp.IncidentType.THEFT' | translate}}</option>
                         <option value="PETTY_TEFT">{{'blacklisthotelApp.IncidentType.PETTY_TEFT' | translate}}</option>
                         <option value="NOISE">{{'blacklisthotelApp.IncidentType.NOISE' | translate}}</option>
@@ -25,8 +25,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.date" for="field_date">Date</label>
                     <div class="input-group">
-                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="incident.date"
-                        />
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" formControlName="date"/>
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                         </span>
@@ -35,32 +34,32 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.place" for="field_place">Place</label>
                     <input type="text" class="form-control" name="place" id="field_place"
-                        [(ngModel)]="incident.place" />
+                           formControlName="place"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.hotel" for="field_hotel">Hotel</label>
                     <input type="text" class="form-control" name="hotel" id="field_hotel"
-                        [(ngModel)]="incident.hotel" />
+                           formControlName="hotel"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.personNameHash" for="field_personNameHash">Person Name Hash</label>
                     <input type="text" class="form-control" name="personNameHash" id="field_personNameHash"
-                        [(ngModel)]="incident.personNameHash" />
+                           formControlName="personNameHash"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.personDocumentHash" for="field_personDocumentHash">Person Document Hash</label>
                     <input type="text" class="form-control" name="personDocumentHash" id="field_personDocumentHash"
-                        [(ngModel)]="incident.personDocumentHash" />
+                           formControlName="personDocumentHash"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.phoneNumberHash" for="field_phoneNumberHash">Phone Number Hash</label>
                     <input type="text" class="form-control" name="phoneNumberHash" id="field_phoneNumberHash"
-                        [(ngModel)]="incident.phoneNumberHash" />
+                           formControlName="phoneNumberHash"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blacklisthotelApp.incident.description" for="field_description">Description</label>
                     <input type="text" class="form-control" name="description" id="field_description"
-                        [(ngModel)]="incident.description" />
+                           formControlName="description"/>
                 </div>
 
             </div>
@@ -68,7 +67,7 @@
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

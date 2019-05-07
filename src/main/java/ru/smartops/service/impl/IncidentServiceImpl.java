@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * Service Implementation for managing Incident.
+ * Service Implementation for managing {@link Incident}.
  */
 @Service
 @Transactional
@@ -31,8 +31,8 @@ public class IncidentServiceImpl implements IncidentService {
     /**
      * Save a incident.
      *
-     * @param incident the entity to save
-     * @return the persisted entity
+     * @param incident the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public Incident save(Incident incident) {
@@ -43,8 +43,8 @@ public class IncidentServiceImpl implements IncidentService {
     /**
      * Get all the incidents.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -57,8 +57,8 @@ public class IncidentServiceImpl implements IncidentService {
     /**
      * Get one incident by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -70,7 +70,7 @@ public class IncidentServiceImpl implements IncidentService {
     /**
      * Delete the incident by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {

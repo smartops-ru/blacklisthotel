@@ -1,18 +1,23 @@
 package ru.smartops.web.rest;
+
 import ru.smartops.domain.Incident;
 import ru.smartops.service.IncidentService;
 import ru.smartops.web.rest.errors.BadRequestAlertException;
-import ru.smartops.web.rest.util.HeaderUtil;
-import ru.smartops.web.rest.util.PaginationUtil;
 import ru.smartops.service.dto.IncidentCriteria;
 import ru.smartops.service.IncidentQueryService;
+
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing Incident.
+ * REST controller for managing {@link ru.smartops.domain.Incident}.
  */
 @RestController
 @RequestMapping("/api")
@@ -32,6 +37,9 @@ public class IncidentResource {
     private final Logger log = LoggerFactory.getLogger(IncidentResource.class);
 
     private static final String ENTITY_NAME = "incident";
+
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
 
     private final IncidentService incidentService;
 
@@ -43,11 +51,11 @@ public class IncidentResource {
     }
 
     /**
-     * POST  /incidents : Create a new incident.
+     * {@code POST  /incidents} : Create a new incident.
      *
-     * @param incident the incident to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new incident, or with status 400 (Bad Request) if the incident has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param incident the incident to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new incident, or with status {@code 400 (Bad Request)} if the incident has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/incidents")
     public ResponseEntity<Incident> createIncident(@RequestBody Incident incident) throws URISyntaxException {
@@ -57,18 +65,18 @@ public class IncidentResource {
         }
         Incident result = incidentService.save(incident);
         return ResponseEntity.created(new URI("/api/incidents/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /incidents : Updates an existing incident.
+     * {@code PUT  /incidents} : Updates an existing incident.
      *
-     * @param incident the incident to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated incident,
-     * or with status 400 (Bad Request) if the incident is not valid,
-     * or with status 500 (Internal Server Error) if the incident couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param incident the incident to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated incident,
+     * or with status {@code 400 (Bad Request)} if the incident is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the incident couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/incidents")
     public ResponseEntity<Incident> updateIncident(@RequestBody Incident incident) throws URISyntaxException {
@@ -78,30 +86,30 @@ public class IncidentResource {
         }
         Incident result = incidentService.save(incident);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, incident.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, incident.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /incidents : get all the incidents.
+     * {@code GET  /incidents} : get all the incidents.
      *
-     * @param pageable the pagination information
-     * @param criteria the criterias which the requested entities should match
-     * @return the ResponseEntity with status 200 (OK) and the list of incidents in body
+     * @param pageable the pagination information.
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of incidents in body.
      */
     @GetMapping("/incidents")
-    public ResponseEntity<List<Incident>> getAllIncidents(IncidentCriteria criteria, Pageable pageable) {
+    public ResponseEntity<List<Incident>> getAllIncidents(IncidentCriteria criteria, Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get Incidents by criteria: {}", criteria);
         Page<Incident> page = incidentQueryService.findByCriteria(criteria, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/incidents");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
-    * GET  /incidents/count : count all the incidents.
+    * {@code GET  /incidents/count} : count all the incidents.
     *
-    * @param criteria the criterias which the requested entities should match
-    * @return the ResponseEntity with status 200 (OK) and the count in body
+    * @param criteria the criteria which the requested entities should match.
+    * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
     */
     @GetMapping("/incidents/count")
     public ResponseEntity<Long> countIncidents(IncidentCriteria criteria) {
@@ -110,10 +118,10 @@ public class IncidentResource {
     }
 
     /**
-     * GET  /incidents/:id : get the "id" incident.
+     * {@code GET  /incidents/:id} : get the "id" incident.
      *
-     * @param id the id of the incident to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the incident, or with status 404 (Not Found)
+     * @param id the id of the incident to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the incident, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/incidents/{id}")
     public ResponseEntity<Incident> getIncident(@PathVariable Long id) {
@@ -123,15 +131,15 @@ public class IncidentResource {
     }
 
     /**
-     * DELETE  /incidents/:id : delete the "id" incident.
+     * {@code DELETE  /incidents/:id} : delete the "id" incident.
      *
-     * @param id the id of the incident to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the incident to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/incidents/{id}")
     public ResponseEntity<Void> deleteIncident(@PathVariable Long id) {
         log.debug("REST request to delete Incident : {}", id);
         incidentService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

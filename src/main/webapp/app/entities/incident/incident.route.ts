@@ -15,84 +15,84 @@ import { IIncident } from 'app/shared/model/incident.model';
 
 @Injectable({ providedIn: 'root' })
 export class IncidentResolve implements Resolve<IIncident> {
-    constructor(private service: IncidentService) {}
+  constructor(private service: IncidentService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IIncident> {
-        const id = route.params['id'] ? route.params['id'] : null;
-        if (id) {
-            return this.service.find(id).pipe(
-                filter((response: HttpResponse<Incident>) => response.ok),
-                map((incident: HttpResponse<Incident>) => incident.body)
-            );
-        }
-        return of(new Incident());
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IIncident> {
+    const id = route.params['id'] ? route.params['id'] : null;
+    if (id) {
+      return this.service.find(id).pipe(
+        filter((response: HttpResponse<Incident>) => response.ok),
+        map((incident: HttpResponse<Incident>) => incident.body)
+      );
     }
+    return of(new Incident());
+  }
 }
 
 export const incidentRoute: Routes = [
-    {
-        path: '',
-        component: IncidentComponent,
-        resolve: {
-            pagingParams: JhiResolvePagingParams
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            defaultSort: 'id,asc',
-            pageTitle: 'blacklisthotelApp.incident.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+  {
+    path: '',
+    component: IncidentComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams
     },
-    {
-        path: ':id/view',
-        component: IncidentDetailComponent,
-        resolve: {
-            incident: IncidentResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'blacklisthotelApp.incident.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    data: {
+      authorities: ['ROLE_USER'],
+      defaultSort: 'id,asc',
+      pageTitle: 'blacklisthotelApp.incident.home.title'
     },
-    {
-        path: 'new',
-        component: IncidentUpdateComponent,
-        resolve: {
-            incident: IncidentResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'blacklisthotelApp.incident.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/view',
+    component: IncidentDetailComponent,
+    resolve: {
+      incident: IncidentResolve
     },
-    {
-        path: ':id/edit',
-        component: IncidentUpdateComponent,
-        resolve: {
-            incident: IncidentResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'blacklisthotelApp.incident.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    }
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'blacklisthotelApp.incident.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'new',
+    component: IncidentUpdateComponent,
+    resolve: {
+      incident: IncidentResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'blacklisthotelApp.incident.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/edit',
+    component: IncidentUpdateComponent,
+    resolve: {
+      incident: IncidentResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'blacklisthotelApp.incident.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  }
 ];
 
 export const incidentPopupRoute: Routes = [
-    {
-        path: ':id/delete',
-        component: IncidentDeletePopupComponent,
-        resolve: {
-            incident: IncidentResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'blacklisthotelApp.incident.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+  {
+    path: ':id/delete',
+    component: IncidentDeletePopupComponent,
+    resolve: {
+      incident: IncidentResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'blacklisthotelApp.incident.home.title'
+    },
+    canActivate: [UserRouteAccessService],
+    outlet: 'popup'
+  }
 ];

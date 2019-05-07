@@ -4,21 +4,21 @@ import { ActivatedRoute } from '@angular/router';
 import { IIncident } from 'app/shared/model/incident.model';
 
 @Component({
-    selector: 'jhi-incident-detail',
-    templateUrl: './incident-detail.component.html'
+  selector: 'jhi-incident-detail',
+  templateUrl: './incident-detail.component.html'
 })
 export class IncidentDetailComponent implements OnInit {
-    incident: IIncident;
+  incident: IIncident;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute) {}
 
-    ngOnInit() {
-        this.activatedRoute.data.subscribe(({ incident }) => {
-            this.incident = incident;
-        });
-    }
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ incident }) => {
+      this.incident = incident;
+    });
+  }
 
-    previousState() {
-        window.history.back();
-    }
+  previousState() {
+    window.history.back();
+  }
 }

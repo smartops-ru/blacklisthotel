@@ -20,7 +20,7 @@ import ru.smartops.repository.IncidentRepository;
 import ru.smartops.service.dto.IncidentCriteria;
 
 /**
- * Service for executing complex queries for Incident entities in the database.
+ * Service for executing complex queries for {@link Incident} entities in the database.
  * The main input is a {@link IncidentCriteria} which gets converted to {@link Specification},
  * in a way that all the filters must apply.
  * It returns a {@link List} of {@link Incident} or a {@link Page} of {@link Incident} which fulfills the criteria.
@@ -38,7 +38,7 @@ public class IncidentQueryService extends QueryService<Incident> {
     }
 
     /**
-     * Return a {@link List} of {@link Incident} which matches the criteria from the database
+     * Return a {@link List} of {@link Incident} which matches the criteria from the database.
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the matching entities.
      */
@@ -50,7 +50,7 @@ public class IncidentQueryService extends QueryService<Incident> {
     }
 
     /**
-     * Return a {@link Page} of {@link Incident} which matches the criteria from the database
+     * Return a {@link Page} of {@link Incident} which matches the criteria from the database.
      * @param criteria The object which holds all the filters, which the entities should match.
      * @param page The page, which should be returned.
      * @return the matching entities.
@@ -63,7 +63,7 @@ public class IncidentQueryService extends QueryService<Incident> {
     }
 
     /**
-     * Return the number of matching entities in the database
+     * Return the number of matching entities in the database.
      * @param criteria The object which holds all the filters, which the entities should match.
      * @return the number of matching entities.
      */
@@ -75,7 +75,7 @@ public class IncidentQueryService extends QueryService<Incident> {
     }
 
     /**
-     * Function to convert IncidentCriteria to a {@link Specification}
+     * Function to convert IncidentCriteria to a {@link Specification}.
      */
     private Specification<Incident> createSpecification(IncidentCriteria criteria) {
         Specification<Incident> specification = Specification.where(null);
