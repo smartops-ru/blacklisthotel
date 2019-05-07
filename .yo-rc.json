@@ -4,7 +4,7 @@
       "packageName": "ru.smartops",
       "nativeLanguage": "ru"
     },
-    "jhipsterVersion": "5.8.2",
+    "jhipsterVersion": "6.0.0",
     "applicationType": "monolith",
     "baseName": "blacklisthotel",
     "packageName": "ru.smartops",
@@ -26,17 +26,14 @@
     "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "npm",
-    "testFrameworks": [
-      "gatling"
-    ],
+    "testFrameworks": ["gatling"],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "ru",
-    "languages": [
-      "ru"
-    ]
+    "languages": ["ru"],
+    "clientTheme": "none"
   }
 }
